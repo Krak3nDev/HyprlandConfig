@@ -1,0 +1,84 @@
+{
+    "layer": "top",
+    "position": "top",
+    "spacing": 5,
+    "modules-left": [
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock#date"
+    ],
+    "modules-right": [
+        "memory",
+        "wireplumber",
+	"battery",
+        "custom/power",
+    ],
+	"clock#date": {
+    	"format": "{:%H:%M   %a, %e %b}",
+    	"tooltip": false
+	},
+    "memory": {
+        "interval": 30,
+	"format": "<span size='large'></span>  {used:0.2f} / {total:0.0f} GB",
+    },
+"wireplumber": {
+    "on-click": "pavucontrol",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+"on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", 
+        "format": "<span foreground='#fab387'>{icon}</span>  {volume}%",
+    "format-muted": "<span size='large' foreground='#fab387'></span>",
+    "format-icons": {
+        "headphone": "<span size='large'></span>",
+        "hands-free": "<span size='large'></span>",
+        "headset": "<span size='large'></span>",
+        "phone": "<span size='large'></span>",
+        "portable": "<span size='large'></span>",
+        "car": "<span size='large'></span>",
+        "default": ["<span size='large'></span>", "<span size='large'></span>", "<span size='large'></span>"]
+    }
+},
+"battery": {
+        "bat": "BAT1",
+        "format": "<span size='large'>{icon} {capacity}%</span>",
+    "format": "<span size='large'>{icon} {capacity}%</span>",
+    "format-icons": {
+        "charging": "<span size='large'></span>",        // Иконка батареи с молнией
+        "discharging": "<span size='large'></span>",    // Иконка батареи на половине заряда
+        "full": "<span size='large'></span>",            // Иконка полной батареи
+        "unknown": "<span size='large'></span>"          // Иконка крестика вместо вопросительного знака
+    },
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+},
+"custom/power": {
+    "format": "<span size='large'></span>",
+    "tooltip": false,
+    "on-click": "wlogout"
+},
+
+    "hyprland/workspaces": {
+	"all": true,
+        "disable-scroll": true,
+        "show-special": false,
+        "all-outputs": true,
+        "format": "{icon}",
+	"show_empty": true,
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5"
+        },
+        "on-scroll-up": "hyprctl dispatch workspace e+1 1>/dev/null",
+        "on-scroll-down": "hyprctl dispatch workspace e-1 1>/dev/null",
+        "sort-by-number": true,
+	"persistent-workspaces": {
+      "*": [ 1, 2, 3, 4, 5],
+   	 },
+    }
+}
